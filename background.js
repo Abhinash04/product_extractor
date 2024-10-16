@@ -8,5 +8,23 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         }).catch(err => {
             console.error('Failed to inject content script', err);
         });
+    }else if (changeInfo.status === 'complete' && tab.url.includes('flipkart.com')) {
+        chrome.scripting.executeScript({
+            target: { tabId: tabId },
+            files: ['content.js']
+        }).then(() => {
+            console.log('Content script injected');
+        }).catch(err => {
+            console.error('Failed to inject content script', err);
+        });
+    }else if (changeInfo.status === 'complete' && tab.url.includes('amazon.in')) {
+        chrome.scripting.executeScript({
+            target: { tabId: tabId },
+            files: ['content.js']
+        }).then(() => {
+            console.log('Content script injected');
+        }).catch(err => {
+            console.error('Failed to inject content script', err);
+        });
     }
 });
